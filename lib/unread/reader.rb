@@ -30,7 +30,8 @@ module Unread
           # For use with scope "with_read_marks_for"
           !self.read_mark_id.nil?
         else
-          !self.class.have_not_read(readable).exists?(self.id)
+          # !self.class.have_not_read(readable).exists?(self.id)
+          !self.class.have_not_read(readable).collect(&:id).include?(self.id)
         end
       end
 

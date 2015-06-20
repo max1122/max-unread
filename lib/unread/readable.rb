@@ -135,7 +135,8 @@ module Unread
             true
           end
         else
-          self.class.unread_by(user).exists?(self.id)
+          # self.class.unread_by(user).exists?(self.id)
+          self.class.unread_by(user).collect(&:id).include?(self.id)
         end
       end
 
